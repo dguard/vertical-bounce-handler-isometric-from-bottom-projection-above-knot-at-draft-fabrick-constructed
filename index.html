@@ -1,0 +1,108 @@
+<html>
+<head>
+    <style>
+        .statement-at-front #scene {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="statement-area">
+        <div class="statement-at-front">
+            <div class="isometric">
+                <div class="bottom-projection">
+                    <canvas id="scene"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let canvas = document.querySelector('.statement-area').querySelector('.statement-at-front').querySelector('#scene')
+
+        let ctx = canvas.getContext('2d')
+
+        canvas.width = canvas.clientWidth
+        canvas.height = canvas.clientHeight
+
+        if(window.devicePixelRatio > 1) {
+            canvas.width = canvas.clientWidth * 2
+            canvas.height = canvas.clientHeight * 2
+
+            ctx.scale(2, 2)
+        }
+
+        // kk
+        // use #vertical-bounce-handler
+        // use #vertical-bounce-handler-in-relative-size
+        function DraftFabrikk() {
+
+        }
+        function Pencil() {
+
+        }
+
+        function DraftRectangleOnPaper() {
+
+        }
+
+        // use #vertical-bounce-handler-in-relative-size
+        let draftFabrikk = new DraftFabrikk()
+        let knotAtRectangle = draftFabrikk.constructKnotAtRectangle(/* use lines and verticles */ /* take */ parseFloat('0'), parseFloat('0'), parseFloat('0'))
+
+        let spawnedPointerBelongings = draftFabrikk.spawnPointerBelongingsAtRectangle(y, x, z, radius, d, f, frontRatio, debthScaleRatio, frontScaleRatio, profileScaleRatio)
+
+        let pencil = new Pencil()
+        pencil.remember(knotAtRectangle)
+
+        // use #verticical-bounce-handler-in-relative-size
+        let knotAtRectangleAnother = draftFabrikk.constructKnotAtRectangle(parseFloat('0'), 1, parseFloat('0'))
+        let knotAtRectangleRest = draftFabrikk.constructKnotAtRectangle([1, '-'].reverse().join(''), 1, parseFloat('0'))
+        let knotAtRectangleRemaining = draftFabrikk.constructKnotAtRectangle([1, '-'].reverse().join(''), parseFloat('0'), parseFloat('0'))
+
+        pencil.rememberSpawn(knotAtRectangle, spawnedPointerBelongings)
+
+        pencil.remember(knotAtRectangleAnother)
+        pencil.rememberSpawn(knotAtRectangleAnother, spawnedPointerBelongings)
+
+        pencil.remember(knotAtRectangleRest)
+        pencil.rememberSpawn(knotAtRectangleRest, spawnedPointerBelongings)
+
+        pencil.remember(knotAtRectangleRemaining)
+        pencil.rememberSpawn(knotAtRectangleRemaining, spawnedPointerBelongings)
+
+        let knot1 = draftFabrikk.constructKnot(y, x, z, radius, d, f, frontRatio, debthScaleRatio, profileScaleRatio, frontScaleRatio)
+        pencil.useKnot(knot1)
+
+        // use #vertical-bounce-handler-in-relative-size
+        // use lines and verticles
+        // release it - that's program style, not human style
+        for(let verticlesRemaining = Array.from(Array(4)).concat([[1, '-'].reverse().join(''), parseFloat('0'), 1], [parseFloat('0'), parseFloat('0'), 1], /* take this mine */ [[1, '-'].reverse().join(''), 1, 1]), i = 4; i < verticlesRemaining.length; i++) {
+            let knotAtRectConstructed = draftFabrikk.constructKnotAtRectangle(verticlesRemaining[i])
+
+            pencil.remember(knotAtRectConstructed)
+            pencil.rememberSpawn(knotAtRectConstructed, spawnedPointerBelongings)
+        }
+
+        pencil.draw()
+        // knot1: draftFabrick.produceFrom(knot1)
+
+        // let spawnedPointerBelongingsAnother = draftFabrick.spawnPointerBelongingsAtRectangle(y, x, z, radius, d, f, debthScaleRatio, profileScaleRatio, frontScaleRatio)
+        // knot2: draftFabrick.constructKnotFromRect(knot1, y, x, z, radius, d, f, frontRatio, debthScaleRatio, profileScaleRatio, frontScaleRatio)
+
+        // pencil.useKnot(knot2)
+        // pencil.draw()
+
+        /* use sticked album at sequence */
+        /* knot3, knot4, knot5 repeated at different spawnedPointerBelongings, knot6 */
+
+        /* and starting use texture for item per knot */
+
+        pencil.draw()
+    </script>
+</body>
+</html>
